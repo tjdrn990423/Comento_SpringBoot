@@ -1,10 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>게시판</title>
+
+    <link rel="stylesheet" th:href="@{/css/board.css}">
 </head>
 <body>
-list입니다
+
+<table>
+    <thead>
+    <tr>
+        <th class="one wide">번호</th>
+        <th class="ten wide">글제목</th>
+        <th class="two wide">작성자</th>
+        <th class="three wide">작성일</th>
+        <th class="five wide">조회수</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <!-- CONTENTS !-->
+    <tr th:each="board : ${list}">
+        <td>
+            <span  th:text="${board.bno}"></span>
+        </td>
+        <td>
+            <a th:href="@{'/boards/' + ${board.bno}}">
+                <span  th:text="${board.title}"></span>
+            </a>
+        </td>
+        <td>
+            <span th:text="${board.writer}"></span>
+        </td>
+        <td>
+            <span  th:text="${board.regdate}"></span>
+        </td>
+        <td>
+            <span  th:text="${board.viewcnt}"></span>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+    <div class="row">
+        <div class="col-auto mr-auto"></div>
+        <div class="col-auto">
+            <a class="btn btn-primary" th:href="@{/boards}" role="button">글쓰기</a>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
