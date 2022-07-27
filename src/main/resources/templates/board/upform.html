@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<h1>게시글 수정</h1>
+<form action="#" th:action="@{'/boards/edit/'+ ${board.bno}}" th:object="${board}" th:method="put">
+
+    <input type="hidden" name="bno" th:field="*{bno}">
+    <!--<input type="hidden" name="regDate" th:field="*{regDate}">-->
+    <input type="hidden" name="viewcnt" th:field="*{viewcnt}">
+
+    <p><label>제목</label>
+        <input type="text" name ="title" th:field="*{title}"></p>
+
+    <label>내용</label><p>
+    <textarea rows="15" cols="65" name = "content" th:field="*{content}"></textarea><p>
+
+    <p><label>작성자</label>
+        <input type="text" name="writer" size="15" th:field="*{writer}">
+    </p>
+
+    <button type = "submit">수정</button>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>게시글 상세정보</h1>
+
+<p><label>글번호</label> <input type="text" name ="bno"  style="background-color:#B0E0E6;" readonly th:value="${board.bno}">
+    </p>
+<p><label>제목</label> <input type="text" name ="title" style="background-color:#B0E0E6;" th:value="${board.title}"
+                            readonly></p>
+<p><label>작성자</label> <input type="text" name="writer" style="background-color:#B0E0E6;" size="15" th:value="${board.writer}" readonly>
+    <p>
+    <label>내용</label> <textarea name=content rows ="10" cols="70"  style="background-color:#B0E0E6;"
+                                 readonly >[[${board.content}]]</textarea><br>
+
+<div>
+    <a th:href="@{'/boards/edit/' + ${board.bno}}">
+        <button>수정</button>
+    </a>
+
+    <form id="deleteForm" th:action="@{'/boards/' + ${board.bno}}" method="post" >
+        <input type="hidden" name="_method" value="delete"/>
+        <button id="delete-btn" onclick="javascript:deleteMember()">삭제</button>
+    </form>
+
+    <a th:href="@{'/boards/'}">
+        <button>목록</button>
+    </a>
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    function deleteMember()
+    {
+        var isDelete = confirm("게시글을 삭제 하시겠습니까?");
+        if(isDelete){
+            var delform = document.getElementById("deleteForm");
+            delform.submit();
+        }
+    }
+
+    /*]]>*/
+</script>
+</body>
+
+</html>

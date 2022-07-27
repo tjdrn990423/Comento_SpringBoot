@@ -3,6 +3,7 @@ package com.comento.board.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -11,7 +12,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Board {
+public class Board extends Time {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bno;
@@ -22,9 +23,7 @@ public class Board {
     private String content;
     @Column
     private String writer;
-    @Column
-    private Date regdate;
-    @Column
+    @Column(columnDefinition = "integer default 0", nullable = false)
     private int viewcnt;
 
 }
