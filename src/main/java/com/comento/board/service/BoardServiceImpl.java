@@ -19,11 +19,13 @@ public class BoardServiceImpl implements BoardService {
 
 
     @Override
+    @Transactional
     public List<Board> listAll() {
         return boardRepository.findAll();
     }
 
     @Override
+    @Transactional
     public Integer register(BoardDTO dto) {
         Board board = dtoToEntity(dto);
         boardRepository.save(board);
@@ -31,6 +33,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    @Transactional
     public BoardDTO findById(int bno) {
         BoardDTO boardDTO = null;
         Optional<Board> board = boardRepository.findById(bno);
@@ -41,6 +44,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    @Transactional
     public void update(BoardDTO boardDTO) {
         Board board = dtoToEntity(boardDTO);
         boardRepository.save(board);
@@ -48,6 +52,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    @Transactional
     public void delete(int bno) {
         boardRepository.deleteById(bno);
     }
